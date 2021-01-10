@@ -1,0 +1,399 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  
+  <title>Document</title>
+
+  
+  <style>
+    body {
+    background: url(https://www.top-semi.com.tw/wordpress/wp-content/uploads/2019/04/%E5%88%86%E6%9E%904-%E7%B8%AE3.jpg);
+    background-size: 100%;
+    font-family: 'Poppins', monospace;
+    color: white;
+    font-size: .7em;
+    font-weight: 200;
+    letter-spacing: 1px;
+  }
+  
+  html {
+    padding: 20px;
+    font-weight: 300;
+  }
+  
+  main {
+      padding: 60px;
+  }
+  
+  section {
+      margin-bottom: 40px;
+  }
+  
+  h1 {
+      font-size: 3em;
+      font-weight: 100;
+  }
+  
+  h2, h3, p {
+      font-size: 1.3em;
+      margin-bottom: 29px;
+      border-bottom: 1px solid rgba(255,255,255,.2);
+      padding-bottom: 15px;
+      font-weight: 200;
+  }
+  
+  hr {
+      border-color: white;
+      margin-bottom: 50px;
+  }
+  
+  figure {
+      background-color: rgba(255,255,255,.05);
+      padding: 10px 10px 30px;
+  }
+  
+  figure p {
+      margin-bottom: 7px;
+      font-size: .8em;
+  }
+  
+  canvas {
+      width: 100%;
+  }
+  
+  
+  /* grid */
+  
+  section[class*='cols'] {
+      display: flex;
+  }
+  
+  .cols-3 > * {
+      width: 33.33%;
+      margin: 10px
+  }
+  
+  .cols-2 > * {
+      width: 50%;
+      margin: 10px
+  }
+  
+  .cols-1 > * {
+      width: 100%;
+      margin: 10px
+  }
+  
+  #chart6 {
+      max-height: 300px;
+  }
+  
+  
+  
+  section {
+      opacity: 0;
+  }
+  
+  .running section {
+      opacity: 1
+  }
+  
+  .loading {
+      position: absolute;
+      border: none;
+  }
+  
+  .running .loading {
+      display: none;
+  }
+
+  .slider {
+    width: 95%;
+    margin: auto;
+    overflow: clip;
+  }
+
+  .slider ul {
+    display: flex;
+    padding: 0;
+    width: 100%;
+  
+    
+    animation: cambio 20s infinite alternate linear;
+  }
+
+  .slider li {
+    width: 100%;
+    list-style: none;
+  }
+
+  .slider img {
+    width: 100%;
+  }
+
+  @keyframes cambio {
+    0% {margin-left: -45;}
+    20% {margin-left: -45;}
+    
+    25% {margin-left: 30%;}
+    45% {margin-left: -30%;}
+    
+  }
+
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+}
+  /* .content-table {
+    margin: 25px 0;
+    font-size: 0.9cm;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20x rgba(0, 0, 0, 0.15);
+
+  } */
+
+ </style>
+
+
+</head>
+<body>
+
+  
+
+  <div>
+    <form name="f1" action="/upload" method="POST" enctype="multipart/form-data">
+
+      <table style="width:100%" class='content-table'>
+
+        <tr>
+          <td colspan="6" VALIGN="TOP" ALIGN="CENTER" >
+            <h1> JAPS House
+            </h1>
+            </td>
+        </tr>
+
+        
+        <tr >
+          <td VALIGN="TOP" ALIGN="CENTER">
+            <p>Provincia </p>
+            <select name=provincia onchange="cambia_barrio()"> 
+              <option value="0" selected>Seleccione... 
+              <option value="1">Madrid 
+              <option value="2">Valencia
+            </select>
+          </td>
+            
+          <td VALIGN="TOP" ALIGN="CENTER"><p>Barrio</p>
+              <select name=barrio> 
+              <option value="-">- 
+              </select> 
+          </td>
+
+      
+          <td VALIGN="TOP" ALIGN="CENTER"> <p>Número de Habitaciones </p>
+            Todos: <input type="radio" name="Numhab" value="0" /><br />
+            1 hab: <input type="radio" name="Numhab" value="1" /><br />
+            2 o más hab: <input type="radio" name="Numhab" value="2" /><br />
+            3 o más hab: <input type="radio" name="Numhab" value="3" /><br />
+            4 o más hab: <input type="radio" name="Numhab" value="4" />
+          </td>  
+        
+        
+          <!-- <td VALIGN="TOP" ALIGN="CENTER"> <p>Presentacion de busqueda</p>
+            <select name=resultados> 
+            <option value="0" selected>Seleccione... 
+            <option value="mapa">Mapa
+            <option value="tabla">Tabla
+            </select>
+          </td>  -->
+
+          <td VALIGN="TOP" ALIGN="CENTER"> <p>Orden Precios </p>
+              Ascendente: <input type="radio" name="Orden" value="1" /><br />
+              Descendente: <input type="radio" name="Orden" value="2" />
+          </td> 
+
+          <td VALIGN="TOP" ALIGN="CENTER"> <p>Top 20</p>
+              Si: <input type="radio" name="Top" value="1" /><br />
+              No: <input type="radio" name="Top" value="2" />
+          </td>
+        </tr>
+        <tr>
+          <td colspan="6" VALIGN="TOP" ALIGN="CENTER" ><br />
+            <br />
+
+            <label for="fname">Desea enviar informacion a su correo</label><br />
+            Si: <input type="radio" name="Envio" value="1" />
+            No: <input type="radio" name="Envio" value="2" />
+            </td>
+        </tr>
+
+        <tr>
+
+          <td colspan="6" VALIGN="TOP" ALIGN="CENTER" >
+            <br />
+            <label for="fname">Correo</label>
+            <input type="text" id="fname" name="Correo">
+            <br />
+            </td>
+        </tr>
+        
+        <tr>
+
+          <td colspan="6" VALIGN="TOP" ALIGN="CENTER"><br /><input type="submit" value="Buscar"  width='30%' ></td>
+        </tr> 
+
+        <tr>
+          <td colspan="6" VALIGN="TOP" ALIGN="CENTER" >
+              <br />
+            </td>
+        </tr>
+  
+       
+      </table>
+    </form>
+  </div>
+
+ 
+  
+  <script>
+  var barrios_1=new Array("-",'Alcala de Henares',
+ 'Alcobendas',
+ 'Alcorcon',
+ 'Aldea del Fresno',
+ 'Aranjuez',
+ 'Arganda del Rey',
+ 'Arroyomolinos',
+ 'Becerril de la Sierra',
+ 'Boadilla del Monte',
+ 'Boalo, El',
+ 'Cadalso de los Vidrios',
+ 'Camarma de Esteruelas',
+ 'Campo Real',
+ 'Canencia',
+ 'Casarrubuelos',
+ 'Chinchon',
+ 'Ciempozuelos',
+ 'Cobeña',
+ 'Collado Villalba',
+ 'Colmenar de Oreja',
+ 'Colmenar Viejo',
+ 'Colmenarejo',
+ 'Coslada',
+ 'Cubas de la Sagra',
+ 'Escorial, El',
+ 'Fresno de Torote',
+ 'Fuenlabrada',
+ 'Fuente el Saz de Jarama',
+ 'Galapagar',
+ 'Getafe',
+ 'Griñón',
+ 'Guadarrama',
+ 'Humanes de Madrid',
+ 'Leganes',
+ 'Loeches',
+ 'Madrid',
+ 'Majadahonda',
+ 'Manzanares el Real',
+ 'Moraleja de Enmedio',
+ 'Mostoles',
+ 'Navacerrada',
+ 'Navalagamella',
+ 'Nuevo Baztan',
+ 'Orusco de Tajuña',
+ 'Paracuellos de Jarama',
+ 'Parla',
+ 'Perales de Tajuña',
+ 'Pinto',
+ 'Pozuelo de Alarcón',
+ 'Quijorna',
+ 'Rivas-Vaciamadrid',
+ 'Robledo de Chavela',
+ 'Rozas de Madrid, Las',
+ 'San Fernando de Henares',
+ 'San Sebastián de los Reyes',
+ 'Santos de la Humosa, Los',
+ 'Serranillos del Valle',
+ 'Tielmes',
+ 'Torrejon de Ardoz',
+ 'Torres de la Alameda',
+ 'Tres Cantos',
+ 'Valdemanco',
+ 'Valdemorillo',
+ 'Valdemoro',
+ 'Valdetorres de Jarama',
+ 'Vellon, El',
+ 'Villa del Prado',
+ 'Villanueva de la Cañada',
+ 'Villar del Olmo',
+ 'Villaviciosa de Odon');
+  var barrios_2=new Array("-","Salta","San Juan","San Luis","La Rioja","La Pampa","...");
+//   var provincias_3=new Array("-","Cali","Santamarta","Medellin","Cartagena","...");
+//   var provincias_4=new Array("-","Aisne","Creuse","Dordogne","Essonne","Gironde ","...");
+
+  var todosbarrios = [
+    [],
+    barrios_1,
+    barrios_2,
+    // provincias_3,
+    // provincias_4,
+  ];
+
+  function cambia_barrio(){ 
+   	//tomo el valor del select de la provincia elegida
+   	var provincia 
+   	provincia = document.f1.provincia[document.f1.provincia.selectedIndex].value 
+   	//miro a ver si la provincia está definida 
+   	if (provincia != 0) { 
+      	//si estaba definido, entonces coloco las opciones del barrio correspondiente. 
+      	//selecciono el array del barrio adecuado 
+      	mis_barrios=todosbarrios[provincia]
+      	//calculo el numero de barrios 
+      	num_barrios = mis_barrios.length 
+      	//marco el número de barrios en el select 
+      	document.f1.barrio.length = num_barrios 
+      	//para cada barrio del array, la introduzco en el select 
+      	for(i=0;i<num_barrios;i++){ 
+         	document.f1.barrio.options[i].value=mis_barrios[i] 
+         	document.f1.barrio.options[i].text=mis_barrios[i] 
+      	}	
+   	}else{ 
+      	//si no había barrio seleccionada, elimino los barrios del select 
+      	document.f1.barrio.length = 1 
+      	//coloco un guión en la única opción que he dejado 
+      	document.f1.barrio.options[0].value = "-" 
+      	document.f1.barrio.options[0].text = "-" 
+   	} 
+   	//marco como seleccionada la opción primera del barrio 
+   	document.f1.barrio.options[0].selected = true 
+}
+
+  </script>
+
+<img src="https://i.ibb.co/hBpc8s3/house-for-sale2.jpg" alt="" border="5px" class= 'center'>
+
+
+<div class="slider">
+  <br />
+  <br />
+  <ul>
+    <br />
+    <br />
+    <br />
+    <li>
+<img src="https://2.bp.blogspot.com/-y5iBHyszZIs/XK2osKQh3jI/AAAAAAAALIM/L0KknEMPLtYelmGMDpNTcL7MbwGVIgW6gCLcBGAs/s1600/LOGO%2BREDPISO-1.jpg" alt="">
+</li>
+    <li>
+<img src="https://i.ibb.co/2SvmPn4/LOGO1jpg.jpg" alt="LOGO1jpg">
+</li>
+    <li>
+<img src="https://i.ibb.co/1m8LNtg/LOGO2.jpg" alt="LOGO2">
+</li>
+  </ul>
+</div>
+
+
+</body>
+</html>
